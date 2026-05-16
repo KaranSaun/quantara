@@ -1,0 +1,21 @@
+name: APEX OS Scheduler Fallback
+
+on:
+  schedule:
+    # Runs at 08:45 AM IST (03:15 AM UTC) every weekday
+    - cron: '15 3 * * 1-5'
+    # Runs at 08:00 AM IST (02:30 AM UTC) every weekday
+    - cron: '30 2 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  run-daily-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trigger Strike Selector
+        run: |
+          curl -X POST "${{ secrets.APEX_API_URL }}/api/admin/run-job/strike_selector" \
+          -H "Authorization: Bearer ${{ secrets.APEX_ADMIN_TOKEN }}"
