@@ -35,8 +35,6 @@ export default function Sidebar() {
 
   return (
     <aside className="sidebar-container" style={{
-      width: '100%',
-      height: '100%',
       padding: '24px 0',
     }}>
       {/* Logo */}
