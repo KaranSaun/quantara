@@ -88,12 +88,14 @@ export default function LivePage() {
   }, []);
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <>
       <Sidebar />
-      <main style={{ marginLeft: 240, flex: 1, display: 'flex', flexDirection: 'column', width: 'calc(100% - 240px)' }}>
+      <main className="main-container">
         <TickerStrip />
+        <div className="content-viewport">
+          <div className="page-content">
 
-        <div style={{ padding: '32px 40px' }}>
+        <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
             <h1 style={{ fontFamily: 'var(--font-head)', fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em' }}>
               Live <span style={{ color: 'var(--blue)' }}>Market</span>
@@ -141,8 +143,13 @@ export default function LivePage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 200px 200px', gap: 16, marginBottom: 24 }}>
             {/* Chart Upload */}
-            <div
-              className="apex-card"
+                          <input type="file" id="chart-upload" style={{ display: 'none' }} accept="image/*" onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) handleDrop({ preventDefault: () => {}, dataTransfer: { files: [file] } } as any);
+              }} />
+              <div
+                className="apex-card"
+                onClick={() => document.getElementById('chart-upload')?.click()}
               onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
               onDrop={handleDrop}
@@ -181,8 +188,9 @@ export default function LivePage() {
             <VIXMeter vix={16.4} />
           </div>
 
+          </div>
           {/* OI Heatmap Table */}
-          <div className="apex-card" style={{ padding: '20px 24px', marginBottom: 24 }}>
+          <div className="apex-card" style={{ padding: '20px 24px', marginBottom: 24, gridColumn: '1 / -1' }}>
             <div style={{ fontFamily: 'var(--font-head)', fontSize: 14, fontWeight: 700, marginBottom: 16 }}>
               OI Heatmap — BANKNIFTY
             </div>
@@ -250,7 +258,8 @@ export default function LivePage() {
             ))}
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
+  </>
   );
 }

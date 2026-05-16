@@ -24,13 +24,7 @@ export default function TickerStrip({ data }: { data?: TickerItem[] }) {
   const doubled = [...items, ...items]; // Duplicate for seamless scroll
 
   return (
-    <div style={{
-      width: '100%',
-      overflow: 'hidden',
-      background: 'var(--surface)',
-      borderBottom: '1px solid var(--border)',
-      padding: '6px 0',
-    }}>
+    <div className="ticker-strip-wrapper">
       <div className="ticker-track">
         {doubled.map((item, i) => (
           <div key={i} style={{

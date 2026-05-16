@@ -2,29 +2,34 @@
 
 import Sidebar from '@/components/ui/Sidebar';
 import TickerStrip from '@/components/ui/TickerStrip';
-import { useState } from 'react';
-
-const CHAIN = Array.from({ length: 25 }, (_, i) => {
-  const strike = 54800 + i * 100;
-  const atm = 55700;
-  return {
-    strike, isATM: Math.abs(strike - atm) < 50,
-    ce_oi: Math.round(Math.random() * 120000 + 5000),
-    ce_chg: Math.round((Math.random() - 0.45) * 20000),
-    ce_iv: +(15 + Math.random() * 12).toFixed(1),
-    ce_ltp: +(Math.max(2, (atm - strike) * 0.4 + Math.random() * 60)).toFixed(1),
-    ce_vol: Math.round(Math.random() * 50000),
-    pe_oi: Math.round(Math.random() * 120000 + 5000),
-    pe_chg: Math.round((Math.random() - 0.45) * 20000),
-    pe_iv: +(15 + Math.random() * 12).toFixed(1),
-    pe_ltp: +(Math.max(2, (strike - atm) * 0.4 + Math.random() * 60)).toFixed(1),
-    pe_vol: Math.round(Math.random() * 50000),
-  };
-});
+import { useState, useMemo } from 'react';
 
 export default function OptionsPage() {
   const [index, setIndex] = useState<'BANKNIFTY' | 'NIFTY'>('BANKNIFTY');
   const [search, setSearch] = useState('');
+  
+  const CHAIN = useMemo(() => {
+    return Array.from({ length: 25 }, (_, i) => {
+      const isBank = index === 'BANKNIFTY';
+      const step = isBank ? 100 : 50;
+      const atm = isBank ? 55700 : 24700;
+      const strike = (isBank ? 54500 : 24100) + i * step;
+      return {
+        strike, isATM: Math.abs(strike - atm) < (step / 2),
+        ce_oi: Math.round(Math.random() * 120000 + 5000),
+        ce_chg: Math.round((Math.random() - 0.45) * 20000),
+        ce_iv: +(15 + Math.random() * 12).toFixed(1),
+        ce_ltp: +(Math.max(2, (atm - strike) * 0.4 + Math.random() * 60)).toFixed(1),
+        ce_vol: Math.round(Math.random() * 50000),
+        pe_oi: Math.round(Math.random() * 120000 + 5000),
+        pe_chg: Math.round((Math.random() - 0.45) * 20000),
+        pe_iv: +(15 + Math.random() * 12).toFixed(1),
+        pe_ltp: +(Math.max(2, (strike - atm) * 0.4 + Math.random() * 60)).toFixed(1),
+        pe_vol: Math.round(Math.random() * 50000),
+      };
+    });
+  }, [index]);
+
   const maxOI = Math.max(...CHAIN.map(r => Math.max(r.ce_oi, r.pe_oi)));
 
   const filteredChain = CHAIN.filter(r => 
@@ -33,11 +38,13 @@ export default function OptionsPage() {
   );
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <>
       <Sidebar />
-      <main style={{ marginLeft: 240, flex: 1, display: 'flex', flexDirection: 'column', width: 'calc(100% - 240px)' }}>
+      <main className="main-container">
         <TickerStrip />
-        <div style={{ padding: '32px 40px' }}>
+        <div className="content-viewport">
+          <div className="page-content">
+        <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
             <h1 style={{ fontFamily: 'var(--font-head)', fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em' }}>
               Options <span style={{ color: 'var(--amber)' }}>Chain</span>
@@ -116,7 +123,9 @@ export default function OptionsPage() {
               </tbody>
             </table></div>
           </div>
+                </div>
+        </div>
       </main>
-    </div>
+    </>
   );
 }

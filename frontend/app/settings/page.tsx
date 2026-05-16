@@ -12,10 +12,12 @@ export default function SettingsPage() {
   const [telegramEnabled, setTelegramEnabled] = useState(true);
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <>
       <Sidebar />
-      <main style={{ marginLeft: 240, flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <main className="main-container">
         <TickerStrip />
+        <div className="content-viewport">
+          <div className="page-content">
         <div style={{ padding: '24px 32px', maxWidth: 800 }}>
           <h1 style={{ fontFamily: 'var(--font-head)', fontSize: 28, fontWeight: 800, marginBottom: 24 }}>Settings</h1>
 
@@ -102,7 +104,9 @@ export default function SettingsPage() {
             Save Configuration
           </button>
         </div>
+                </div>
+        </div>
       </main>
-    </div>
+    </>
   );
 }

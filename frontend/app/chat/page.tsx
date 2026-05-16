@@ -44,11 +44,12 @@ export default function ChatPage() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <>
       <Sidebar />
-      <main style={{ marginLeft: 240, flex: 1, display: 'flex', flexDirection: 'column', height: '100vh', width: 'calc(100% - 240px)' }}>
+      <main className="main-container">
         <TickerStrip />
 
+        <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 48px)', overflow: 'hidden', width: '100%' }}>
         <div style={{ padding: '32px 40px 16px' }}>
           <h1 style={{ fontFamily: 'var(--font-head)', fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em', marginBottom: 4 }}>
             Command <span style={{ color: 'var(--purple)' }}>Center</span>
@@ -121,7 +122,8 @@ export default function ChatPage() {
             </button>
           </div>
         </div>
+        </div>
       </main>
-    </div>
+    </>
   );
 }

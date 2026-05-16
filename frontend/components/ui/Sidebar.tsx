@@ -95,7 +95,6 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Footer */}
       <div style={{
         padding: '12px 8px',
         borderTop: '1px solid var(--border)',
@@ -104,8 +103,8 @@ export default function Sidebar() {
         color: 'var(--muted)',
         lineHeight: 1.6,
       }}>
-        POWERED BY AI<br />
-        GEMINI • GROQ • CLAUDE
+        DESIGNED AND DEVELOPED BY<br />
+        KARAN SAUN
       </div>
     </aside>
   );

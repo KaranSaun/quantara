@@ -33,32 +33,35 @@ body {
 
 /* ── Layout Core ── */
 .layout-root {
-  display: grid;
-  grid-template-columns: var(--sidebar-width) 1fr;
-  grid-template-rows: 100vh;
+  display: flex;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar-container {
-  grid-column: 1;
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  height: 100vh;
   border-right: 1px solid var(--border);
   background: var(--surface);
   z-index: 100;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
 
 .main-container {
-  grid-column: 2;
-  display: grid;
-  grid-template-rows: var(--ticker-height) 1fr;
+  flex: 1;
+  width: calc(100vw - var(--sidebar-width));
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
 .ticker-strip-wrapper {
-  grid-row: 1;
+  height: var(--ticker-height);
+  min-height: var(--ticker-height);
+  width: 100%;
   border-bottom: 1px solid var(--border);
   background: var(--bg);
   z-index: 50;
@@ -66,10 +69,11 @@ body {
 }
 
 .content-viewport {
-  grid-row: 2;
+  flex: 1;
+  width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 40px;
+  padding: 32px 40px;
   scroll-behavior: smooth;
 }
 
@@ -215,3 +219,34 @@ h1 { font-family: var(--font-head); font-weight: 900; letter-spacing: -0.04em; m
 }
 .bias-chip.bullish { background: rgba(0, 255, 136, 0.1); color: var(--green); }
 .bias-chip.bearish { background: rgba(255, 59, 92, 0.1); color: var(--red); }
+
+/* ── Links & Navigation ── */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  font-family: var(--font-head);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+}
+
+.nav-link.active {
+  background: rgba(79, 156, 249, 0.08);
+  color: var(--blue);
+  border-left-color: var(--blue);
+}
