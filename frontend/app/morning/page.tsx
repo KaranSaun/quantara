@@ -236,7 +236,7 @@ export default function MorningPage() {
             </div>
           </div>
         </div>
-      </div></div></main>
+      </main>
     </div>
   );
 }

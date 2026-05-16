@@ -250,7 +250,7 @@ export default function LivePage() {
             ))}
           </div>
         </div>
-      </div></div></main>
+      </main>
     </div>
   );
 }

@@ -62,7 +62,7 @@ export default function FinancePage() {
   return (
     <>
       <Sidebar />
-      <main className="main-container"><TickerStrip /><div className="content-viewport"><div className="page-content">
+      <main className="main-container">
         <TickerStrip />
         <div className="content-viewport">
           <div className="page-content">
@@ -194,7 +194,8 @@ export default function FinancePage() {
             </div>
           )}
         </div>
-      </div></div></main>
-    </div>
+      </div>
+    </main>
+    </>
   );
 }

@@ -39,6 +39,9 @@ export const api = {
   getTrades: (days?: number) => apiFetch<any>(`/api/journal/trades?days=${days || 30}`),
 
   // Finance
+  getFinanceData: () => apiFetch<any>('/api/finance/monthly'),
+  addFinanceItem: (data: any) => apiFetch<any>('/api/finance/entry', { method: 'POST', body: JSON.stringify(data) }),
+  deleteFinanceItem: (id: string) => apiFetch<any>(`/api/finance/entry/${id}`, { method: 'DELETE' }),
   addFinance: (data: any) => apiFetch<any>('/api/finance/entry', { method: 'POST', body: JSON.stringify(data) }),
   getMonthly: (year?: number, month?: number) => apiFetch<any>(`/api/finance/monthly?year=${year || 0}&month=${month || 0}`),
   getNetWorth: () => apiFetch<any>('/api/finance/net-worth'),

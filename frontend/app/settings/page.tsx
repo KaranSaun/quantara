@@ -102,7 +102,7 @@ export default function SettingsPage() {
             Save Configuration
           </button>
         </div>
-      </div></div></main>
+      </main>
     </div>
   );
 }

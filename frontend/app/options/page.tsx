@@ -116,8 +116,7 @@ export default function OptionsPage() {
               </tbody>
             </table></div>
           </div>
-        </div>
-      </div></div></main>
+      </main>
     </div>
   );
 }

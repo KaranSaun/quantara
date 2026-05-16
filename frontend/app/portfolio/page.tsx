@@ -45,7 +45,7 @@ export default function PortfolioPage() {
   return (
     <>
       <Sidebar />
-      <main className="main-container"><TickerStrip /><div className="content-viewport"><div className="page-content">
+      <main className="main-container">
         <TickerStrip />
         <div className="content-viewport">
           <div className="page-content">
@@ -126,7 +126,7 @@ export default function PortfolioPage() {
             </div>
           </div>
         </div>
-      </div></div></main>
+      </main>
     </>
   );
 }

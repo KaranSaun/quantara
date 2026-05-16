@@ -122,7 +122,7 @@ export default function JournalPage() {
             </div>
           </div>
         </div>
-      </div></div></main>
+      </main>
     </div>
   );
 }
