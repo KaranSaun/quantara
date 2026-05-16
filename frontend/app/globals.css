@@ -250,3 +250,104 @@ a {
   color: var(--blue);
   border-left-color: var(--blue);
 }
+
+/* ── Comprehensive Mobile Responsiveness ── */
+@media (max-width: 1024px) {
+  .content-viewport {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Layout Changes */
+  .layout-root {
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .sidebar-container {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0 !important;
+  }
+  
+  .sidebar-container h1 {
+    font-size: 20px !important;
+  }
+  
+  /* Make navigation scrollable horizontally */
+  .sidebar-container nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-top: 0 !important;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .sidebar-container nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .nav-link {
+    padding: 8px 16px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .nav-link.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--blue);
+  }
+  
+  /* Hide unnecessary sidebar elements on mobile to save space */
+  .sidebar-container > div:last-child { /* Footer */
+    display: none;
+  }
+  .sidebar-container > div:nth-child(2) { /* Market status */
+    display: none;
+  }
+  
+  .main-container {
+    width: 100%;
+    overflow: visible;
+  }
+  
+  .ticker-strip-wrapper {
+    position: sticky;
+    top: 60px; /* Below the compacted sidebar */
+    z-index: 999;
+  }
+
+  .content-viewport {
+    padding: 16px;
+    overflow: visible;
+  }
+
+  /* Universal Grid Overrides for Components */
+  div[style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  
+  /* Tables */
+  .apex-table th, .apex-table td {
+    padding: 10px 8px;
+    font-size: 10px;
+  }
+  
+  h1 {
+    font-size: 24px !important;
+  }
+  
+  .apex-card {
+    padding: 16px !important;
+  }
+}
